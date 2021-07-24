@@ -14,6 +14,7 @@ public class SpawnSystem : MonoBehaviour
     {
         this.template.SetActive(false);
         EventBroadcaster.Instance.AddObserver(EventNames.ON_SPAWN_BUTTON_CLICKED, this.OnSpawnEvent);
+        EventBroadcaster.Instance.AddObserver(EventNames.ON_SPAWN_BUTTON_CLICKED, this.onSpawnSphereEvent);
         EventBroadcaster.Instance.AddObserver(EventNames.ON_CLEAR_BUTTON_CLICKED, this.OnClearEvent);
     }
 
@@ -42,6 +43,21 @@ public class SpawnSystem : MonoBehaviour
         }
     }
 
+    void onSpawnSphereEvent(Parameters parameters)
+    {
+        int nSpawn = parameters.GetIntExtra(NUM_SPAWNS_KEY, 1);
+        //int nSpawn = 5;
+
+        for (int i = 0; i < nSpawn; i++)
+        {
+            //Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), new Vector3(-5, 15, -5), Quaternion.identity, null);
+            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere.AddComponent(typeof(Rigidbody));
+            sphere.transform.position = new Vector3(0, 2, 0);
+        }
+
+
+    }
     public void OnClearEvent()
     {
         if (spawnList.Count > 0)
