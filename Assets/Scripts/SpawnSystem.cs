@@ -45,10 +45,10 @@ public class SpawnSystem : MonoBehaviour
 
     void onSpawnSphereEvent(Parameters parameters)
     {
-        int nSpawn = parameters.GetIntExtra(NUM_SPAWNS_KEY, 1);
+        int nSphereSpawns = parameters.GetIntExtra(NUM_SPAWNS_KEY, 1);
         //int nSpawn = 5;
 
-        for (int i = 0; i < nSpawn; i++)
+        for (int i = 0; i < nSphereSpawns; i++)
         {
             //Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), new Vector3(-5, 15, -5), Quaternion.identity, null);
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
