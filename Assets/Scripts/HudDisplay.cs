@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class HudDisplay : MonoBehaviour
 {
+
+    [SerializeField] private Text InputText; 
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,12 @@ public class HudDisplay : MonoBehaviour
     }
      public void OnSpawnButtonClicked()
     {
-        int nSpawns = 5;
+        int nSpawns;
+
+        int.TryParse(InputText.text, out nSpawns);
         Parameters parameters = new Parameters();
         parameters.PutExtra(SpawnSystem.NUM_SPAWNS_KEY, nSpawns);
+
         EventBroadcaster.Instance.PostEvent(EventNames.ON_SPAWN_BUTTON_CLICKED, parameters);
     }
 
