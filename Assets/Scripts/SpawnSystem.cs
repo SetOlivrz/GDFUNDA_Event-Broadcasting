@@ -14,12 +14,14 @@ public class SpawnSystem : MonoBehaviour
     {
         this.template.SetActive(false);
         EventBroadcaster.Instance.AddObserver(EventNames.ON_SPAWN_BUTTON_CLICKED, this.OnSpawnEvent);
+        EventBroadcaster.Instance.AddObserver(EventNames.ON_CLEAR_BUTTON_CLICKED, this.OnClearEvent);
     }
 
 
     private void OnDestroy()
     {
         EventBroadcaster.Instance.RemoveObserver(EventNames.ON_SPAWN_BUTTON_CLICKED);
+        EventBroadcaster.Instance.RemoveObserver(EventNames.ON_CLEAR_BUTTON_CLICKED);
     }
 
     // Update is called once per frame
@@ -38,6 +40,21 @@ public class SpawnSystem : MonoBehaviour
             copy.SetActive(true);
             spawnList.Add(copy);
         }
-       
+    }
+
+    public void OnClearEvent()
+    {
+        if (spawnList.Count > 0)
+        {
+            for (int i = 0; i < spawnList.Count; i++)
+            {
+                Destroy(spawnList[i]);
+            }
+            this.spawnList.Clear();
+        }
+        else
+        {
+            Debug.Log("Empty Spawn List");
+        }
     }
 }

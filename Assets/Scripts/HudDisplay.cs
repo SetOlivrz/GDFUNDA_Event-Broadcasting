@@ -25,4 +25,9 @@ public class HudDisplay : MonoBehaviour
         EventBroadcaster.Instance.PostEvent(EventNames.ON_SPAWN_BUTTON_CLICKED, parameters);
     }
 
+    public void OnClearButtonClicked()
+    {
+        EventBroadcaster.Instance.PostEvent(EventNames.ON_CLEAR_BUTTON_CLICKED);
+    }
+
 }
