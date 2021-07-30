@@ -19,20 +19,47 @@ public class HudDisplay : MonoBehaviour
     {
         
     }
-     public void OnSpawnButtonClicked()
+     public void OnSpawnBallsClicked()
     {
         int nSpawns;
 
         int.TryParse(InputText.text, out nSpawns);
+
+        if (nSpawns == 0)
+        {
+            nSpawns = 1;
+        }
+
         Parameters parameters = new Parameters();
         parameters.PutExtra(SpawnSystem.NUM_SPAWNS_KEY, nSpawns);
 
-        EventBroadcaster.Instance.PostEvent(EventNames.ON_SPAWN_BUTTON_CLICKED, parameters);
+        EventBroadcaster.Instance.PostEvent(EventNames.ON_SPAWN_BALL_BUTTON_CLICKED, parameters);
+    }
+
+    public void OnSpawnCubeClicked()
+    {
+        int nSpawns;
+        int.TryParse(InputText.text, out nSpawns);
+
+        if (nSpawns == 0)
+        {
+            nSpawns = 1;
+        }
+
+        Parameters parameters = new Parameters();
+        parameters.PutExtra(SpawnSystem.NUM_SPAWNS_KEY, nSpawns);
+
+        EventBroadcaster.Instance.PostEvent(EventNames.ON_SPAWN_CUBE_BUTTON_CLICKED, parameters);
     }
 
     public void OnClearButtonClicked()
     {
         EventBroadcaster.Instance.PostEvent(EventNames.ON_CLEAR_BUTTON_CLICKED);
+    }
+
+        public void OnRandomizeColorbuttonClicked()
+    {
+        EventBroadcaster.Instance.PostEvent(EventNames.ON_RANDOMIZE_COLOR_BUTTON_CLICKED);
     }
 
 }
