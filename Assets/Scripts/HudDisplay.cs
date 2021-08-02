@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class HudDisplay : MonoBehaviour
@@ -57,9 +58,24 @@ public class HudDisplay : MonoBehaviour
         EventBroadcaster.Instance.PostEvent(EventNames.ON_CLEAR_BUTTON_CLICKED);
     }
 
-        public void OnRandomizeColorbuttonClicked()
+    public void OnRandomizeColorbuttonClicked()
     {
         EventBroadcaster.Instance.PostEvent(EventNames.ON_RANDOMIZE_COLOR_BUTTON_CLICKED);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Event Broadcasting");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void MenuGame()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
 }
